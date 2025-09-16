@@ -12,7 +12,7 @@ If you face a error like above. You will need to install the xacro package. This
 
 .. code-block:: bash
 
-      sudo apt install ros-galactic-xacro
+      sudo apt install ros-humble-xacro
 
 
 2. ROS Controller Manager Not Found
@@ -27,7 +27,7 @@ If you are facing errors like above. You will need to install the controller man
 
 .. code-block:: bash
 
-      sudo apt-get install ros-galactic-controller-manager
+      sudo apt-get install ros-humble-controller-manager
 
 3. Transform Not Available
 -----------------------------------------------------------------
