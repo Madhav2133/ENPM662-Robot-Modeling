@@ -10,10 +10,6 @@ Therefore we suggest everyone to use a similar combination of software for ease 
 
 There are a few different methods that you can use to get a Linux Operating System on your device. 
 
-
-
-
-
 Dual Boot
 --------------------------------
 This method lets you retain your Windows Operating system along side Ubuntu. This can be easily undone by removing Ubuntu.

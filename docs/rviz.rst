@@ -18,11 +18,11 @@ We move to the root of our package and then run the code below to download the t
 
 .. code-block:: bash
 
-    svn export https://github.com/shantanuparabumd/ENPM-662-Introduction-to-Robot-Modelling.git/trunk/templates/rviz
+    svn export http://github.com/Madhav2133/ENPM662-Robot-Modeling/tree/master/templates/rviz
 
 .. code-block:: bash
 
-    svn export https://github.com/shantanuparabumd/ENPM-662-Introduction-to-Robot-Modelling.git/trunk/templates/template2/launch
+    svn export https://github.com/Madhav2133/ENPM662-Robot-Modeling/tree/master/templates/template2/launch
 
 So that the robot can move in the RVIZ environment we add a :guilabel:`dummy_link` to our robot. This is
 simply done by adding a link and a joint to :guilabel:`robot_name.urdf.xacro` file as follows.

@@ -185,5 +185,5 @@ of your package using.
 
 .. code-block:: bash
 
-    svn export https://github.com/shantanuparabumd/ENPM-662-Introduction-to-Robot-Modelling.git/trunk/templates/template3/launch
+    svn export https://github.com/Madhav2133/ENPM662-Robot-Modeling/tree/master/templates/template3/launch
 

@@ -234,7 +234,7 @@ This plugin is provided to us by :guilabel:`odometry` package so make sure you h
 
 .. code-block:: bash
 
-  svn export https://github.com/shantanuparabumd/ENPM-662-Introduction-to-Robot-Modelling.git/trunk/templates/plugin/odometry
+  svn export https://github.com/Madhav2133/ENPM662-Robot-Modeling/tree/master/templates/plugin/odometry
 
 3. Build the workspace and source.
 
@@ -298,7 +298,7 @@ This plugin is provided to us by :guilabel:`drone_plugin` package so make sure y
 
 .. code-block:: bash
 
-  svn export https://github.com/shantanuparabumd/ENPM-662-Introduction-to-Robot-Modelling.git/trunk/templates/plugin/drone_plugin
+  svn export https://github.com/Madhav2133/ENPM662-Robot-Modeling/tree/master/templates/plugin/drone_plugin
 
 3. Build the workspace and source.
 

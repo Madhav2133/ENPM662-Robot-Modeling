@@ -26,7 +26,7 @@ Example:
 .. code-block:: bash
 
 
-   ros2 pkg create --build-type ament_cmake  car
+   ros2 pkg create --build-type ament_cmake car
 
 
 You will get a similar folder structure once a package is created successfully.

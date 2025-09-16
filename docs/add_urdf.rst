@@ -152,7 +152,7 @@ We move to the root of our package and then run the code below to download the t
 
 .. code-block:: bash
 
-    svn export https://github.com/shantanuparabumd/ENPM-662-Introduction-to-Robot-Modelling.git/trunk/templates/launch
+    svn export https://github.com/Madhav2133/ENPM662-Robot-Modeling/tree/master/templates/launch
 
 
 
@@ -160,7 +160,7 @@ We also need a empty world to spawn our robot in so we will download the world f
 
 .. code-block:: bash
 
-    svn export https://github.com/shantanuparabumd/ENPM-662-Introduction-to-Robot-Modelling.git/trunk/templates/worlds
+    svn export https://github.com/Madhav2133/ENPM662-Robot-Modeling/tree/master/templates/worlds
 
 
 Your current package structure should look like follows.
