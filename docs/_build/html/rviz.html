@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RVIZ &mdash; ENPM 662: Introduction to Robot Modelling 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Plugin" href="plugin.html" />
+    <link rel="prev" title="Controllers" href="add_control.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> ENPM 662: Introduction to Robot Modelling
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install_ubuntu.html">Install Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_ros2.html">Install ROS2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidworks.html">Solidworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workspace.html">Workspace Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_creation.html">Create a Package in ROS 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_urdf.html">Add URDF to Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_control.html">Controllers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">RVIZ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin.html">Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="script.html">teleop Script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_objects.html">Custom Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world.html">Creating and Saving a world in Gazebo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Faced Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ENPM 662: Introduction to Robot Modelling</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">RVIZ</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/rviz.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="rviz">
+<h1>RVIZ<a class="headerlink" href="#rviz" title="Permalink to this heading"></a></h1>
+<p>Visualization is a very important concept in robot simulation. In order to visualize the various sensor inputs like LIDAR, Camera etc.
+we will be using RVIZ 2 a software for visualizing the ROS2 topics.</p>
+<p>RVIZ 2 requires setup and configurations that might be overwhelming at this stage so to help out we will be using a few templates.</p>
+<p>We move to the root of our package and then run the code below to download the templates.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/test_ws/src/package-name/
+
+<span class="c1"># Example</span>
+<span class="nb">cd</span><span class="w"> </span>~/test_ws/src/test_package/
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>svn<span class="w"> </span><span class="nb">export</span><span class="w"> </span>https://github.com/shantanuparabumd/ENPM-662-Introduction-to-Robot-Modelling.git/trunk/templates/rviz
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>svn<span class="w"> </span><span class="nb">export</span><span class="w"> </span>https://github.com/shantanuparabumd/ENPM-662-Introduction-to-Robot-Modelling.git/trunk/templates/template2/launch
+</pre></div>
+</div>
+<p>So that the robot can move in the RVIZ environment we add a <span class="guilabel">dummy_link</span> to our robot. This is
+simply done by adding a link and a joint to <span class="guilabel">robot_name.urdf.xacro</span> file as follows.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>#<span class="w"> </span>Add<span class="w"> </span>this<span class="w"> </span>before<span class="w"> </span>base<span class="w"> </span>link
+<span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;dummy_link&quot;</span><span class="nt">&gt;&lt;/link&gt;</span>
+
+#<span class="w"> </span>Add<span class="w"> </span>this<span class="w"> </span>after<span class="w"> </span>base<span class="w"> </span>link
+<span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;dummy_joint&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;dummy_link&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;base_link&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/joint&gt;</span>
+</pre></div>
+</div>
+<p>File Description:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The <span class="guilabel">gazebo.launch.py</span> will launch the Gazebo environment and will load the controllers.</p></li>
+<li><p>The <span class="guilabel">display.launch.py</span> will launch RVIZ 2 along with the neccessary setup for the Robot Visualization.</p></li>
+<li><p>The <span class="guilabel">debug.launch.py</span> will launch both Gazebo and RVIZ 2 together.</p></li>
+</ul>
+</div></blockquote>
+<p>Use any of the above launch files as required.</p>
+<p>Once RVIZ is launched Add the robot model to the tree.</p>
+<p>If the robot is not visible add the topic <span class="guilabel">/robot_description</span> to the <span class="guilabel">Description Topic</span> argument.</p>
+<a class="reference internal image-reference" href="_images/robot_description.png"><img alt="Robot Description Topic" src="_images/robot_description.png" style="width: 700px;" /></a>
+<p>Select <span class="guilabel">dummy_link</span> in the <span class="guilabel">Fixed Frame</span> argument.</p>
+<a class="reference internal image-reference" href="_images/global_frame.png"><img alt="Robot Description Topic" src="_images/global_frame.png" style="width: 700px;" /></a>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="add_control.html" class="btn btn-neutral float-left" title="Controllers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plugin.html" class="btn btn-neutral float-right" title="Plugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Shantanu Parab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

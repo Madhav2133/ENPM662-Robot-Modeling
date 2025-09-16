@@ -5,6 +5,8 @@ Add URDF to Package
 Download URDF
 -----------------------------------------------------------
 
+.. Updated this
+
 Once you have created a URDF using Solidworks you will get a package which is compatible with ROS1. However to make it work with ROS2 we will need to make some changes.
 
 .. note::
@@ -344,15 +346,15 @@ File Name: `spawn_robot_ros2.launch.py`
 Once All the changes are done.
 Build Your Package and Source Overlay
 
-If you find dependencies missing while building the package. You can install them using.
+.. If you find dependencies missing while building the package. You can install them using.
 
-.. code-block:: bash
-    sudo apt install ros-galactic-package-name
+.. .. code-block:: bash
+..     sudo apt install ros-humble-<package-name>
 
-e.g.
+.. e.g.
 
-.. code-block:: bash
-    sudo apt install ros-galactic-xacro
+.. .. code-block:: bash
+..     sudo apt install ros-humble-xacro
 
 
 Launch your robot using

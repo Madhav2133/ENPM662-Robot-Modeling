@@ -1,12 +1,8 @@
 Support
 =====================================================================
 
-In case of any doubts reach out to 
+In case of any doubts reach out to us:
 
-Teaching Assistant's:
+vmadhav@umd.edu
 
-Name: Shantanu Parab
-Email: sparab@umd.edu
-
-Name: Saksham Verma
-Email: saksham1@umd.edu
+rmonfare@umd.edu

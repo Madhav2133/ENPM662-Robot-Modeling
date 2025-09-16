@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Object &mdash; ENPM 662: Introduction to Robot Modelling 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Creating and Saving a world in Gazebo" href="world.html" />
+    <link rel="prev" title="teleop Script" href="script.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> ENPM 662: Introduction to Robot Modelling
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install_ubuntu.html">Install Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_ros2.html">Install ROS2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidworks.html">Solidworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workspace.html">Workspace Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_creation.html">Create a Package in ROS 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_urdf.html">Add URDF to Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_control.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rviz.html">RVIZ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin.html">Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="script.html">teleop Script</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Custom Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world.html">Creating and Saving a world in Gazebo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Faced Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ENPM 662: Introduction to Robot Modelling</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Custom Object</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/custom_objects.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="custom-object">
+<h1>Custom Object<a class="headerlink" href="#custom-object" title="Permalink to this heading"></a></h1>
+<p>When working on your project you will be creating new environments for your robots.
+For this you will be using existing models in Gazebo or making some custom objects.
+In order to create new object models and add them to Gazebo environment follow the given process.</p>
+<ol class="arabic simple">
+<li><p>Create part or assembly in Solidworks</p></li>
+</ol>
+<p>As done previously create assembly of the required custom object.</p>
+<ol class="arabic simple" start="2">
+<li><p>Export to URDF</p></li>
+</ol>
+<p>Use previous tutorials to export the model to URDF</p>
+<ol class="arabic simple" start="3">
+<li><p>Convert the model to SDF</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>Move the urdf model along with the meshes to your <span class="guilabel">Ubuntu (ROS System)</span>.</p></li>
+<li><p>Go to the folder containing the <span class="guilabel">model.urdf</span> file.</p></li>
+<li><p>Run the below command to convert the <span class="guilabel">urdf</span> file to <span class="guilabel">sdf</span> file.</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gz<span class="w"> </span>sdf<span class="w"> </span>-p<span class="w"> </span>/model.urdf<span class="w"> </span>&gt;<span class="w"> </span>/model.sdf
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Create a model folder</p></li>
+</ol>
+<p>Your model folder will consist of 2 files and 1 folder.
+The folder name will be <span class="guilabel">meshes</span> and will contain the <span class="guilabel">.STL</span> meshes of the object.
+<span class="guilabel">model.config</span> file will consist of the version,maintainer,description of the object.</p>
+<p>You can use the below contents for making the config file by pasting the below lines in your file.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+
+<span class="nt">&lt;model&gt;</span>
+<span class="nt">&lt;name&gt;</span>Model_Name<span class="nt">&lt;/name&gt;</span>
+<span class="nt">&lt;version&gt;</span>1.0<span class="nt">&lt;/version&gt;</span>
+
+<span class="hll"><span class="nt">&lt;sdf</span><span class="w"> </span><span class="na">version=</span><span class="s">&quot;1.1&quot;</span><span class="nt">&gt;</span>model.sdf<span class="nt">&lt;/sdf&gt;</span>
+</span>
+<span class="nt">&lt;author&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>Your<span class="w"> </span>Name<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;email&gt;</span>Your<span class="w"> </span>Mail<span class="w"> </span>ID<span class="nt">&lt;/email&gt;</span>
+<span class="nt">&lt;/author&gt;</span>
+
+<span class="nt">&lt;description&gt;</span>
+<span class="w">    </span>Description<span class="w"> </span>of<span class="w"> </span>Your<span class="w"> </span>Model
+<span class="nt">&lt;/description&gt;</span>
+<span class="nt">&lt;/model&gt;</span>
+</pre></div>
+</div>
+<p>The highlingted line will have the name of your <span class="guilabel">.sdf</span> file.</p>
+<p><span class="guilabel">model.sdf</span> will consist of the sdf file from above step.</p>
+<p>Your final folder structure will be as follow</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--<span class="w"> </span>model<span class="o">(</span>your_folder_name<span class="o">)</span>
+<span class="w">    </span>--<span class="w"> </span>meshes
+<span class="w">    </span>--<span class="w"> </span>model.config
+<span class="w">    </span>--<span class="w"> </span>model.sdf
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Editing SDF file</p></li>
+</ol>
+<p>Make sure that the reference to the meshes is correct in the SDF file.
+Use the below line of code for reference.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&lt;mesh&gt;</span>
+<span class="w">        </span><span class="nt">&lt;scale&gt;</span>1<span class="w"> </span>1<span class="w"> </span>1<span class="nt">&lt;/scale&gt;</span>
+<span class="hll"><span class="w">        </span><span class="nt">&lt;uri&gt;</span>model://your_folder_name/meshes/part_name.STL<span class="nt">&lt;/uri&gt;</span>
+</span><span class="w">    </span><span class="nt">&lt;/mesh&gt;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Add the model to Gazebo models.</p></li>
+</ol>
+<p>Move to the models urdf folder and run the following command to copy the  model to the
+Gazebo models location.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>-r<span class="w"> </span>your_folder_name/<span class="w"> </span>~/.gazebo/models
+</pre></div>
+</div>
+<p>Once you run Gazebo you should be able to see the model in the model list in Gazebo.</p>
+<p>You can add this model to the environment by dragging it into the screen. You can save this world and use it again wheever needed.
+See the next tutorial for understanding world saving.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="script.html" class="btn btn-neutral float-left" title="teleop Script" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="world.html" class="btn btn-neutral float-right" title="Creating and Saving a world in Gazebo" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Shantanu Parab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

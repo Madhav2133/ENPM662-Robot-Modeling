@@ -10,11 +10,19 @@ Project 1 Documentation
    :maxdepth: 2
    :caption: Contents:
 
-  
+   install_ubuntu
+   install_ros2
+   solidworks
    workspace
    package_creation
    add_urdf
    add_control
+   rviz
+   plugin   
+   script
+   custom_objects
+   world
+   faq
    support
    
 
@@ -32,9 +40,9 @@ This will consist of the following steps.
 
 * Exporting Model to URDF
 
-* Installing Ubuntu 20.04 (Focal Fossa)
+* Installing Ubuntu 22.04 (Jammy Jellyfish)
 
-* Installing ROS 2 Galactic
+* Installing ROS 2 Humble
 
 * Setting Up Environment
 
@@ -58,10 +66,10 @@ Software Requirements and Extensions
 * SW2URDF Exporter
    To export your model to URDF file format
 
-* Ubuntu 20.04
+* Ubuntu 22.04
    This is our base operating system for stable builds of our package
 
-* ROS2 Galactic
+* ROS2 Humble
    This is a stable version of ROS2 which works well for our project
 
 * Gazebo 
@@ -69,35 +77,3 @@ Software Requirements and Extensions
 
 
 
-.. Subsection
-
-.. You can use ``backticks`` for showing ``highlighted`` code.
-
-
-.. .. highlight:: bash
-..    :linenothreshold: 1
-
-.. A cool bit of code::
-
-..    #!/bin/bash
-..    # Some cool Bash code
-..    echo ${BASH_VERSINFO[*]}
-..    ros2 pkg create --build-type ament_cmake <package_name>
-
-
-.. .. code-block:: xml
-
-
-..    <joint
-..     name="front_right_lidar_joint"
-..     type="fixed">
-..     <origin
-..       xyz="2.1064 -1.1064 1.92"
-..       rpy="0 0 0" />
-..     <parent
-..       link="base_link" />
-..     <child
-..       link="front_right_lidar" />
-..     <axis
-..       xyz="0 0 0" />
-..   </joint>

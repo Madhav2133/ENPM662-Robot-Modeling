@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Script &mdash; ENPM 662: Introduction to Robot Modelling 1.0 documentation</title>
+  <title>teleop Script &mdash; ENPM 662: Introduction to Robot Modelling 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -12,16 +12,19 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Custom Object" href="custom_objects.html" />
+    <link rel="prev" title="Plugin" href="plugin.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -29,28 +32,31 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="index.html" class="icon icon-home">
-            ENPM 662: Introduction to Robot Modelling
+            <a href="index.html" class="icon icon-home"> ENPM 662: Introduction to Robot Modelling
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install_ubuntu.html">Install Ubuntu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_ros2.html">Install ROS2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="env_setup.html">Environment Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidworks.html">Solidworks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="workspace.html">Workspace Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="package_creation.html">Creta a Package in ROS 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_creation.html">Create a Package in ROS 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_urdf.html">Add URDF to Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_control.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rviz.html">RVIZ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin.html">Plugin</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">teleop Script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_objects.html">Custom Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world.html">Creating and Saving a world in Gazebo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Faced Errors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
 </ul>
 
@@ -67,8 +73,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Script</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">teleop Script</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/script.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -78,14 +84,120 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="script">
-<h1>Script<a class="headerlink" href="#script" title="Permalink to this heading"></a></h1>
+  <section id="teleop-script">
+<h1>teleop Script<a class="headerlink" href="#teleop-script" title="Permalink to this heading"></a></h1>
+<p>Use the following Python Code as reference to control your robot.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">rclpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">geometry_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Twist</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">std_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Float64MultiArray</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sensor_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">JointState</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">select</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tty</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">termios</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pynput</span><span class="w"> </span><span class="kn">import</span> <span class="n">keyboard</span>
+
+<span class="c1"># Define key codes</span>
+<span class="n">LIN_VEL_STEP_SIZE</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">ANG_VEL_STEP_SIZE</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">KeyboardControlNode</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;keyboard_control_node&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">joint_position_pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_publisher</span><span class="p">(</span><span class="n">Float64MultiArray</span><span class="p">,</span> <span class="s1">&#39;/position_controller/commands&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wheel_velocities_pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_publisher</span><span class="p">(</span><span class="n">Float64MultiArray</span><span class="p">,</span> <span class="s1">&#39;/velocity_controller/commands&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">joint_state_pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_publisher</span><span class="p">(</span><span class="n">JointState</span><span class="p">,</span> <span class="s1">&#39;/joint_states&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="n">termios</span><span class="o">.</span><span class="n">tcgetattr</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">getKey</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tty</span><span class="o">.</span><span class="n">setraw</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span>
+        <span class="n">rlist</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">select</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="mf">0.1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">rlist</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+        <span class="n">termios</span><span class="o">.</span><span class="n">tcsetattr</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">,</span> <span class="n">termios</span><span class="o">.</span><span class="n">TCSADRAIN</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">key</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_keyboard_control</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        Control Your Car!</span>
+<span class="s2">        ---------------------------</span>
+<span class="s2">        Moving around:</span>
+<span class="s2">            w</span>
+<span class="s2">        a    s    d</span>
+
+<span class="s2">        q : force stop</span>
+
+<span class="s2">        Esc to quit</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span>
+        <span class="n">joint_positions</span> <span class="o">=</span> <span class="n">Float64MultiArray</span><span class="p">()</span>
+        <span class="n">wheel_velocities</span> <span class="o">=</span> <span class="n">Float64MultiArray</span><span class="p">()</span>
+        <span class="n">linear_vel</span><span class="o">=</span><span class="mf">0.0</span>
+        <span class="n">steer_angle</span><span class="o">=</span><span class="mf">0.0</span>
+
+
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getKey</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\x1b</span><span class="s1">&#39;</span><span class="p">:</span>  <span class="c1"># Escape key</span>
+                    <span class="k">break</span>
+                <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>  <span class="c1"># Quit</span>
+                    <span class="n">linear_vel</span><span class="o">=</span><span class="mf">0.0</span>
+                    <span class="n">steer_angle</span><span class="o">=</span><span class="mf">0.0</span>
+                <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span>  <span class="c1"># Forward</span>
+                    <span class="n">linear_vel</span> <span class="o">+=</span> <span class="n">LIN_VEL_STEP_SIZE</span>
+                <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;s&#39;</span><span class="p">:</span>  <span class="c1"># Reverse</span>
+                    <span class="n">linear_vel</span> <span class="o">-=</span> <span class="n">LIN_VEL_STEP_SIZE</span>
+                <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span>  <span class="c1"># Right</span>
+                    <span class="n">steer_angle</span> <span class="o">-=</span> <span class="n">ANG_VEL_STEP_SIZE</span>
+                <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span>  <span class="c1"># Left</span>
+                    <span class="n">steer_angle</span> <span class="o">+=</span> <span class="n">ANG_VEL_STEP_SIZE</span>
+
+
+                <span class="k">if</span> <span class="n">steer_angle</span><span class="o">&gt;</span><span class="mf">1.0</span><span class="p">:</span>
+                        <span class="n">steer_angle</span><span class="o">=</span><span class="mf">1.0</span>
+                <span class="k">if</span> <span class="n">steer_angle</span><span class="o">&lt;-</span><span class="mf">1.0</span><span class="p">:</span>
+                    <span class="n">steer_angle</span><span class="o">=-</span><span class="mf">1.0</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Steer Angle&quot;</span><span class="p">,</span><span class="n">steer_angle</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Linear Velocity&quot;</span><span class="p">,</span><span class="n">linear_vel</span><span class="p">)</span>
+                <span class="c1"># Publish the twist message</span>
+                <span class="n">wheel_velocities</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">linear_vel</span><span class="p">,</span><span class="o">-</span><span class="n">linear_vel</span><span class="p">,</span><span class="n">linear_vel</span><span class="p">,</span><span class="o">-</span><span class="n">linear_vel</span><span class="p">]</span>
+                <span class="n">joint_positions</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">steer_angle</span><span class="p">,</span><span class="n">steer_angle</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">joint_position_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">joint_positions</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">wheel_velocities_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">wheel_velocities</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">KeyboardControlNode</span><span class="p">()</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">run_keyboard_control</span><span class="p">()</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">destroy_node</span><span class="p">()</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plugin.html" class="btn btn-neutral float-left" title="Plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="custom_objects.html" class="btn btn-neutral float-right" title="Custom Object" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Controllers &mdash; ENPM 662: Introduction to Robot Modelling 1.0 documentation</title>
@@ -12,9 +12,10 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
@@ -22,7 +23,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Script" href="script.html" />
+    <link rel="next" title="RVIZ" href="rviz.html" />
     <link rel="prev" title="Add URDF to Package" href="add_urdf.html" /> 
 </head>
 
@@ -31,15 +32,11 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="index.html" class="icon icon-home">
-            ENPM 662: Introduction to Robot Modelling
+            <a href="index.html" class="icon icon-home"> ENPM 662: Introduction to Robot Modelling
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -49,7 +46,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install_ubuntu.html">Install Ubuntu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_ros2.html">Install ROS2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="env_setup.html">Environment Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidworks.html">Solidworks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="workspace.html">Workspace Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="package_creation.html">Create a Package in ROS 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="add_urdf.html">Add URDF to Package</a></li>
@@ -60,8 +57,12 @@
 <li class="toctree-l2"><a class="reference internal" href="#start-the-controller">Start the Controller</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="script.html">Script</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rviz.html">RVIZ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin.html">Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="script.html">teleop Script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_objects.html">Custom Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world.html">Creating and Saving a world in Gazebo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Faced Errors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
 </ul>
 
@@ -78,7 +79,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
       <li class="breadcrumb-item active">Controllers</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/add_control.rst.txt" rel="nofollow"> View page source</a>
@@ -94,7 +95,8 @@
 <section id="install-dependencies">
 <h2>Install dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this heading"></a></h2>
 <p>In your home folder run the following command to install dependencies for ros controllers</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-galactic-ros2-control<span class="w"> </span>ros-galactic-ros2-controllers<span class="w"> </span>ros-galactic-gazebo-ros2-control
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-humble-ros2-control<span class="w"> </span>ros-humble-ros2-controllers<span class="w"> </span>ros-humble-gazebo-ros2-control
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-humble-controller-manager
 </pre></div>
 </div>
 </section>
@@ -142,7 +144,7 @@
 <p>You also need to add Gazebo Plugin for the Controller</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;gazebo&gt;</span>
 <span class="w">    </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;libgazebo_ros2_control.so&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;gazebo_ros2_control&quot;</span><span class="nt">&gt;</span>
-<span class="w">        </span><span class="nt">&lt;parameters&gt;</span>$(find<span class="w"> </span>car)/config/control.yaml<span class="nt">&lt;/parameters&gt;</span>
+<span class="w">        </span><span class="nt">&lt;parameters&gt;</span>$(find<span class="w"> </span>test_package)/config/control.yaml<span class="nt">&lt;/parameters&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/plugin&gt;</span>
 <span class="nt">&lt;/gazebo&gt;</span>
 </pre></div>
@@ -157,46 +159,57 @@ cd<span class="w"> </span>config
 touch<span class="w"> </span>control.yaml
 </pre></div>
 </div>
+<p>Add this folder to the :guilabel::<cite>CMakeLists.txt</cite> file.</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">install</span><span class="p">(</span><span class="s">DIRECTORY</span>
+<span class="w">    </span><span class="s">urdf</span>
+<span class="w">    </span><span class="s">meshes</span>
+<span class="w">    </span><span class="s">launch</span>
+<span class="w">    </span><span class="s">worlds</span>
+<span class="hll"><span class="w">    </span><span class="s">config</span>
+</span><span class="w">    </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">share/</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">/</span>
+<span class="w">    </span><span class="p">)</span>
+</pre></div>
+</div>
 <p>You may edit the control.yaml file as follows to add controller description.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>controller_manager:
-ros__parameters:
-<span class="w">    </span>update_rate:<span class="w"> </span>1000<span class="w">  </span>#<span class="w"> </span>Hz
+<span class="w">    </span>ros__parameters:
+<span class="w">        </span>update_rate:<span class="w"> </span>1000<span class="w">  </span>#<span class="w"> </span>Hz
 
-<span class="w">    </span>use_sim_time:<span class="w"> </span>true
+<span class="w">        </span>use_sim_time:<span class="w"> </span>true
 
-<span class="w">    </span>position_controller:
-<span class="w">    </span>type:<span class="w"> </span>position_controllers/JointGroupPositionController
+<span class="w">        </span>position_controller:
+<span class="w">            </span>type:<span class="w"> </span>position_controllers/JointGroupPositionController
 
-<span class="w">    </span>joint_state_broadcaster:
-<span class="w">    </span>type:<span class="w"> </span>joint_state_broadcaster/JointStateBroadcaster
+<span class="w">        </span>joint_state_broadcaster:
+<span class="w">            </span>type:<span class="w"> </span>joint_state_broadcaster/JointStateBroadcaster
 
-<span class="w">    </span>velocity_controller:
-<span class="w">        </span>type:<span class="w"> </span>velocity_controllers/JointGroupVelocityController
+<span class="w">        </span>velocity_controller:
+<span class="w">            </span>type:<span class="w"> </span>velocity_controllers/JointGroupVelocityController
 
 
 
 position_controller:
-ros__parameters:
-<span class="w">    </span>joints:
-<span class="w">    </span>-<span class="w"> </span>front_left_axel_joint
-<span class="w">    </span>interface_name:<span class="w"> </span>position
-<span class="w">    </span>command_interfaces:
-<span class="w">    </span>-<span class="w"> </span>position
-<span class="w">    </span>state_interfaces:
-<span class="w">    </span>-<span class="w"> </span>position
-<span class="w">    </span>-<span class="w"> </span>velocity
+<span class="w">    </span>ros__parameters:
+<span class="w">        </span>joints:
+<span class="w">            </span>-<span class="w"> </span>front_left_axel_joint
+<span class="w">        </span>interface_name:<span class="w"> </span>position
+<span class="w">        </span>command_interfaces:
+<span class="w">            </span>-<span class="w"> </span>position
+<span class="w">        </span>state_interfaces:
+<span class="w">            </span>-<span class="w"> </span>position
+<span class="w">            </span>-<span class="w"> </span>velocity
 
 
 velocity_controller:
-ros__parameters:
-<span class="w">    </span>joints:
-<span class="w">    </span>-<span class="w"> </span>front_left_wheel_joint
-<span class="w">    </span>interface_name:<span class="w"> </span>velocity
-<span class="w">    </span>command_interfaces:
-<span class="w">    </span>-<span class="w"> </span>velocity
-<span class="w">    </span>state_interfaces:
-<span class="w">    </span>-<span class="w"> </span>position
-<span class="w">    </span>-<span class="w"> </span>velocity
+<span class="w">    </span>ros__parameters:
+<span class="w">        </span>joints:
+<span class="w">            </span>-<span class="w"> </span>front_left_wheel_joint
+<span class="w">        </span>interface_name:<span class="w"> </span>velocity
+<span class="w">        </span>command_interfaces:
+<span class="w">            </span>-<span class="w"> </span>velocity
+<span class="w">        </span>state_interfaces:
+<span class="w">            </span>-<span class="w"> </span>position
+<span class="w">            </span>-<span class="w"> </span>velocity
 </pre></div>
 </div>
 <p>You may now build and Overlay your package</p>
@@ -220,6 +233,11 @@ ros2<span class="w"> </span>control<span class="w"> </span>load_controller<span 
 ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/position_controller/commands<span class="w"> </span>std_msgs/msg/Float64MultiArray<span class="w"> </span><span class="s2">&quot;{data: [0.3,0.3,0.3,0.3],layout: {dim:[], data_offset: 1&quot;</span><span class="o">}}</span>
 </pre></div>
 </div>
+<p>Let’s add the controllers spawner into our launch files. To do this you can just import the revised tempplate for the launch folder in the root
+of your package using.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>svn<span class="w"> </span><span class="nb">export</span><span class="w"> </span>https://github.com/shantanuparabumd/ENPM-662-Introduction-to-Robot-Modelling.git/trunk/templates/template3/launch
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -228,7 +246,7 @@ ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </s
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="add_urdf.html" class="btn btn-neutral float-left" title="Add URDF to Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="script.html" class="btn btn-neutral float-right" title="Script" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="rviz.html" class="btn btn-neutral float-right" title="RVIZ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

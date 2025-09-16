@@ -1,14 +1,14 @@
 Workspace Setup
 =====================================================================
 
-use the following to setup your  workspace
+Use the following to setup your  workspace
 
 Inorder to setup a workspace you first need to source your ROS2 environment.
 
 
 .. code-block:: bash
 
-    source /opt/ros/galactic/setup.bash
+    source /opt/ros/humble/setup.bash
 
 Now you need to create a folder to act as a workspace.
 
@@ -17,12 +17,12 @@ Now you need to create a folder to act as a workspace.
     mkdir -p ~/test_ws/src
     cd ~/test_ws/src
 
-Whenever you make changes to your package run this line to downlod all the dependencies before runnning a build.
+Whenever you make changes to your package run this line to download all the dependencies before runnning a build.
 
 .. code-block:: bash
 
     cd ..
-    rosdep install -i --from-path src --rosdistro galactic -y
+    rosdep install -i --from-path src --rosdistro humble -y
 
 From the root of your workspace (~/test_ws) run the following command to build your workspace 
 

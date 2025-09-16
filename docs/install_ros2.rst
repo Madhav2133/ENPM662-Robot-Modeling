@@ -1,24 +1,24 @@
 Install ROS2
 =====================================================================
 
-Use the following instructions to install ROS 2 Galactic in your ubuntu system
+Use the following instructions to install ROS 2 Humble in your ubuntu system
 
 
 Installation Guide:
 -------------------------------------------------------------
 
-`Official Installation Guide <https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Debians.html>`_
+`Official Installation Guide <https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html>`_
 
 Tutorials:
 -------------------------------------------------------------------
 
-`Official Tutorials for ROS2 Galactic <https://docs.ros.org/en/galactic/Tutorials.html>`_
+`Official Tutorials for ROS2 Humble <https://docs.ros.org/en/humble/Tutorials.html>`_
 
 .. note::
     * Going through the beginner tutorials will be enough at this stage.
 
-    * Make sure you follow the Binary Package Installation for ROS2 Geochelone.
+    * Make sure you follow the Binary Package Installation for ROS2 Humble.
     
-    * Make sure you have Ubuntu Focal Fossa 20.04
+    * Make sure you have Ubuntu Jammy 22.04
 
 

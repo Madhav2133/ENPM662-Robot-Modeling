@@ -8,8 +8,8 @@ In your home folder run the following command to install dependencies for ros co
 
 .. code-block:: bash
 
-    sudo apt install ros-galactic-ros2-control ros-galactic-ros2-controllers ros-galactic-gazebo-ros2-control
-    sudo apt-get install ros-galactic-controller-manager
+    sudo apt install ros-humble-ros2-control ros-humble-ros2-controllers ros-humble-gazebo-ros2-control
+    sudo apt-get install ros-humble-controller-manager
 
 CMakeLists and Package XML
 ----------------------------------------------------------------

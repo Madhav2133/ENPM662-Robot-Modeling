@@ -1,11 +1,11 @@
 Install Ubuntu
 =====================================================================
 
- The version of ROS2 we will be using is :guilabel:`Galactic Geochelone`. This version is stable and supported on :guilabel:`Ubuntu Focal Fossa (20.04) 64-bit`.
+ The version of ROS2 we will be using is :guilabel:`Humble Hawksbill`. This version is stable and supported on :guilabel:`Ubuntu Jammy Jellyfish (22.04) 64-bit`.
 Therefore we suggest everyone to use a similar combination of software for ease of resolution of errors.
 
 .. note::
-    The tutorials above are for reference you might need to make a few changes from your side to get the correct version of Ubuntu ( Focal Fossa 20.04)
+    The tutorials above are for reference you might need to make a few changes from your side to get the correct version of Ubuntu (Jammy 22.04)
 
 
 There are a few different methods that you can use to get a Linux Operating System on your device. 
@@ -22,13 +22,9 @@ All the device resources are available to Ubuntu and simulations run smoother wi
 `How to Dual Boot Ubuntu 22.04 LTS and Windows 11 <https://youtu.be/QKn5U2esuRk>`_
 
 .. warning::
-    * The tutorial explains dual booting :guilabel:`Windows 11` with :guilabel:`Ubuntu 22.04`, however we will be using :guilabel:`Ubuntu 20.04`. 
-    
-    * The steps shown in the video can be followed just make sure you get the ISO Image for Ubuntu 20.04.
+    * The tutorial explains dual booting :guilabel:`Windows 11` with :guilabel:`Ubuntu 22.04`.
     
     * Make sure you have turned off the bitlocker or save your bitlocker encryption keys such that they are available when you want to boot back to Windows.
-
-
 
 
 Docker
@@ -45,8 +41,6 @@ This method creates a virtual environment to install Ubuntu. Resources are share
 This method is safe and good for initial testing and training purpose.
 
 `How to Install Ubuntu in VirtualBox on Windows 11 <https://youtu.be/-CIepTSsaNE>`_
-
-
 
 
 Complete Boot 

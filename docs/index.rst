@@ -18,8 +18,7 @@ Project 1 Documentation
    add_urdf
    add_control
    rviz
-   plugin
-   competition_setup
+   plugin   
    script
    custom_objects
    world
@@ -41,9 +40,9 @@ This will consist of the following steps.
 
 * Exporting Model to URDF
 
-* Installing Ubuntu 20.04 (Focal Fossa)
+* Installing Ubuntu 22.04 (Jammy Jellyfish)
 
-* Installing ROS 2 Galactic
+* Installing ROS 2 Humble
 
 * Setting Up Environment
 
@@ -67,10 +66,10 @@ Software Requirements and Extensions
 * SW2URDF Exporter
    To export your model to URDF file format
 
-* Ubuntu 20.04
+* Ubuntu 22.04
    This is our base operating system for stable builds of our package
 
-* ROS2 Galactic
+* ROS2 Humble
    This is a stable version of ROS2 which works well for our project
 
 * Gazebo 

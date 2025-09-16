@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plugin &mdash; ENPM 662: Introduction to Robot Modelling 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="teleop Script" href="script.html" />
+    <link rel="prev" title="RVIZ" href="rviz.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> ENPM 662: Introduction to Robot Modelling
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install_ubuntu.html">Install Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_ros2.html">Install ROS2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidworks.html">Solidworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workspace.html">Workspace Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_creation.html">Create a Package in ROS 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_urdf.html">Add URDF to Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_control.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rviz.html">RVIZ</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Plugin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#lidar">LIDAR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#imu">IMU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vacuum-gripper">Vacuum Gripper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#odometry">Odometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#drone-plugin">Drone Plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="script.html">teleop Script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_objects.html">Custom Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world.html">Creating and Saving a world in Gazebo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Faced Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ENPM 662: Introduction to Robot Modelling</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Plugin</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/plugin.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="plugin">
+<h1>Plugin<a class="headerlink" href="#plugin" title="Permalink to this heading"></a></h1>
+<p>Plugins are very helpful to add sensors and actuators to your Gazebo Model. We can create custom plugins or use existing plugins that are
+available.</p>
+<section id="lidar">
+<h2>LIDAR<a class="headerlink" href="#lidar" title="Permalink to this heading"></a></h2>
+<p>Here we are going to use a LIDAR plugin to sense the environment of our robot using light rays.</p>
+<p>To add a LIDAR we will be utilizing the link that we already created for LIDAR.
+We will add the below code to our URDF file.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;gazebo</span><span class="w"> </span><span class="na">reference=</span><span class="s">&quot;add_name_of_your_link&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;sensor</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;lidar&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;ray&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;pose&gt;</span>0.0<span class="w"> </span>0.0<span class="w"> </span>0.0<span class="w"> </span>0<span class="w"> </span>0<span class="w"> </span>0<span class="nt">&lt;/pose&gt;</span>
+<span class="w">    </span><span class="nt">&lt;always_on&gt;</span>true<span class="nt">&lt;/always_on&gt;</span>
+<span class="w">    </span><span class="nt">&lt;visualize&gt;</span>true<span class="nt">&lt;/visualize&gt;</span>
+<span class="w">    </span><span class="nt">&lt;update_rate&gt;</span>5<span class="nt">&lt;/update_rate&gt;</span>
+<span class="w">    </span><span class="nt">&lt;ray&gt;</span>
+<span class="w">      </span><span class="nt">&lt;scan&gt;</span>
+<span class="w">        </span><span class="nt">&lt;horizontal&gt;</span>
+<span class="w">          </span><span class="nt">&lt;samples&gt;</span>360<span class="nt">&lt;/samples&gt;</span>
+<span class="w">          </span><span class="nt">&lt;resolution&gt;</span>1.00000<span class="nt">&lt;/resolution&gt;</span>
+<span class="w">          </span><span class="nt">&lt;min_angle&gt;</span>0.000000<span class="nt">&lt;/min_angle&gt;</span>
+<span class="w">          </span><span class="nt">&lt;max_angle&gt;</span>6.280000<span class="nt">&lt;/max_angle&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/horizontal&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/scan&gt;</span>
+<span class="w">      </span><span class="nt">&lt;range&gt;</span>
+<span class="w">        </span><span class="nt">&lt;min&gt;</span>0.120000<span class="nt">&lt;/min&gt;</span>
+<span class="w">        </span><span class="nt">&lt;max&gt;</span>3.5<span class="nt">&lt;/max&gt;</span>
+<span class="w">        </span><span class="nt">&lt;resolution&gt;</span>0.015000<span class="nt">&lt;/resolution&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/range&gt;</span>
+<span class="w">      </span><span class="nt">&lt;noise&gt;</span>
+<span class="w">        </span><span class="nt">&lt;type&gt;</span>gaussian<span class="nt">&lt;/type&gt;</span>
+<span class="w">        </span><span class="nt">&lt;mean&gt;</span>0.0<span class="nt">&lt;/mean&gt;</span>
+<span class="w">        </span><span class="nt">&lt;stddev&gt;</span>0.01<span class="nt">&lt;/stddev&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/noise&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/ray&gt;</span>
+<span class="w">    </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;scan&quot;</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;libgazebo_ros_ray_sensor.so&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;ros&gt;</span>
+<span class="w">        </span><span class="nt">&lt;remapping&gt;</span>~/out:=scan<span class="nt">&lt;/remapping&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/ros&gt;</span>
+<span class="w">      </span><span class="nt">&lt;output_type&gt;</span>sensor_msgs/LaserScan<span class="nt">&lt;/output_type&gt;</span>
+<span class="w">      </span><span class="nt">&lt;frame_name&gt;</span>add_name_of_your_link<span class="nt">&lt;/frame_name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/sensor&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/gazebo&gt;</span>
+</pre></div>
+</div>
+<p>Build your project and use the Launch script to start RVIZ 2.</p>
+<p>Click on the Add button on the bottom left corner of the screen.</p>
+<a class="reference internal image-reference" href="_images/Add.png"><img alt="Add Laser Topic" src="_images/Add.png" style="width: 700px;" /></a>
+<p>Select the LaserScan topic from the list.</p>
+<a class="reference internal image-reference" href="_images/laser_topic.png"><img alt="Add Laser Topic" src="_images/laser_topic.png" style="width: 700px;" /></a>
+<p>Use the following configurations for Laser Scanner to work. You can make changes once you are comfortable.
+Make sure you change the topic name to the topic of your laser scanner.</p>
+<a class="reference internal image-reference" href="_images/rviz_laser_config.png"><img alt="Add Laser Topic" src="_images/rviz_laser_config.png" style="width: 700px;" /></a>
+</section>
+<section id="imu">
+<h2>IMU<a class="headerlink" href="#imu" title="Permalink to this heading"></a></h2>
+<p>In order to implememt the closed loop controller we need a feedback from our robot. This feedback will be
+the orientation of the robot. To get the orientation of the robot we will be adding an IMU sensor
+to the robot.</p>
+<p>Add the folowing line to <span class="guilabel">robot_name.urdf.xacro</span> file. Make sure you edit the highlighted lines.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="nt">&lt;gazebo</span><span class="w"> </span><span class="na">reference=</span><span class="s">&quot;name_of_the_base_link&quot;</span><span class="nt">&gt;</span>
+</span><span class="w">  </span><span class="nt">&lt;gravity&gt;</span>true<span class="nt">&lt;/gravity&gt;</span>
+<span class="w">  </span><span class="nt">&lt;sensor</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;imu_sensor&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;imu&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;always_on&gt;</span>true<span class="nt">&lt;/always_on&gt;</span>
+<span class="w">    </span><span class="nt">&lt;update_rate&gt;</span>100<span class="nt">&lt;/update_rate&gt;</span>
+<span class="w">    </span><span class="nt">&lt;visualize&gt;</span>true<span class="nt">&lt;/visualize&gt;</span>
+<span class="w">    </span><span class="nt">&lt;topic&gt;</span>__default_topic__<span class="nt">&lt;/topic&gt;</span>
+<span class="w">    </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;libgazebo_ros_imu_sensor.so&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;imu_plugin&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;topicName&gt;</span>imu<span class="nt">&lt;/topicName&gt;</span>
+<span class="hll"><span class="w">      </span><span class="nt">&lt;bodyName&gt;</span>name_of_the_base_link<span class="nt">&lt;/bodyName&gt;</span>
+</span><span class="w">      </span><span class="nt">&lt;updateRateHZ&gt;</span>10.0<span class="nt">&lt;/updateRateHZ&gt;</span>
+<span class="w">      </span><span class="nt">&lt;gaussianNoise&gt;</span>0.0<span class="nt">&lt;/gaussianNoise&gt;</span>
+<span class="w">      </span><span class="nt">&lt;xyzOffset&gt;</span>0<span class="w"> </span>0<span class="w"> </span>0<span class="nt">&lt;/xyzOffset&gt;</span>
+<span class="w">      </span><span class="nt">&lt;rpyOffset&gt;</span>0<span class="w"> </span>0<span class="w"> </span>0<span class="nt">&lt;/rpyOffset&gt;</span>
+<span class="hll"><span class="w">      </span><span class="nt">&lt;frameName&gt;</span>name_of_the_base_link<span class="nt">&lt;/frameName&gt;</span>
+</span><span class="w">      </span><span class="nt">&lt;initialOrientationAsReference&gt;</span>false<span class="nt">&lt;/initialOrientationAsReference&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="w">    </span><span class="nt">&lt;pose&gt;</span>0<span class="w"> </span>0<span class="w"> </span>0<span class="w"> </span>0<span class="w"> </span>0<span class="w"> </span>0<span class="nt">&lt;/pose&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/sensor&gt;</span>
+<span class="nt">&lt;/gazebo&gt;</span>
+</pre></div>
+</div>
+<p>Build and Run the project and you should be able to see <span class="guilabel">imu</span> topic in the topic list.
+Use the information provided in this topic as a feedback for you robot.</p>
+</section>
+<section id="vacuum-gripper">
+<h2>Vacuum Gripper<a class="headerlink" href="#vacuum-gripper" title="Permalink to this heading"></a></h2>
+<p>To add a Vacuum Gripper to your robot manipulator, you can use the similar approach used for adding the
+plugins to your robot.
+This plugin is provided to us by <span class="guilabel">gazebo_plugins</span> so make sure you have the  package installed.</p>
+<p>Add the folowing line to <span class="guilabel">robot_name.urdf.xacro</span> file.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;gazebo&gt;</span>
+<span class="w">  </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">&#39;vacuum_gripper&#39;</span><span class="w"> </span><span class="na">filename=</span><span class="s">&#39;libgazebo_ros_vacuum_gripper.so&#39;</span><span class="nt">&gt;</span>
+
+<span class="w">    </span><span class="cm">&lt;!-- This part can be commented out if not required --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;ros&gt;</span>
+
+<span class="w">      </span><span class="cm">&lt;!-- Add a namespace --&gt;</span>
+
+<span class="w">      </span><span class="nt">&lt;namespace&gt;</span>/demo<span class="nt">&lt;/namespace&gt;</span>
+
+<span class="w">      </span><span class="cm">&lt;!-- Remapping service and topic names --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;remapping&gt;</span>switch:=custom_switch<span class="nt">&lt;/remapping&gt;</span>
+<span class="w">      </span><span class="nt">&lt;remapping&gt;</span>grasping:=custom_grasping<span class="nt">&lt;/remapping&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/ros&gt;</span>
+
+<span class="w">    </span><span class="cm">&lt;!-- Link associated with gripper --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;link_name&gt;</span>link<span class="nt">&lt;/link_name&gt;</span>
+
+<span class="w">    </span><span class="cm">&lt;!-- Max distance to attract entities --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;max_distance&gt;</span>10.0<span class="nt">&lt;/max_distance&gt;</span>
+
+<span class="w">    </span><span class="cm">&lt;!-- List of entities to be not attracted by the gripper --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;fixed&gt;</span>ground_plane<span class="nt">&lt;/fixed&gt;</span>
+<span class="w">    </span><span class="nt">&lt;fixed&gt;</span>wall<span class="nt">&lt;/fixed&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="nt">&lt;/gazebo&gt;</span>
+</pre></div>
+</div>
+<p>Build and Run the project and you should be able to see <span class="guilabel">/namespace/switch</span> service in the service  list.</p>
+<p>Use the below command to get the service list</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>list
+</pre></div>
+</div>
+<p>Use the below command to get the switch on the gripper</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/vacuum_gripper/switch<span class="w"> </span>std_srvs/srv/SetBool<span class="w"> </span>data:<span class="se">\ </span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>Use the below command to get the switch off the gripper</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/vacuum_gripper/switch<span class="w"> </span>std_srvs/srv/SetBool<span class="w"> </span>data:<span class="se">\ </span><span class="nb">false</span>
+</pre></div>
+</div>
+<p>Python script</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">std_srvs.srv</span><span class="w"> </span><span class="kn">import</span> <span class="n">SetBool</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rclpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MinimalClientAsync</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;minimal_client_async&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cli</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span><span class="n">SetBool</span><span class="p">,</span> <span class="s1">&#39;/vacuum_gripper/switch&#39;</span><span class="p">)</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">cli</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;service not available, waiting again...&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">req</span> <span class="o">=</span> <span class="n">SetBool</span><span class="o">.</span><span class="n">Request</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">status</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">future</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cli</span><span class="o">.</span><span class="n">call_async</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="p">)</span>
+        <span class="n">rclpy</span><span class="o">.</span><span class="n">spin_until_future_complete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">future</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+    <span class="n">minimal_client</span> <span class="o">=</span> <span class="n">MinimalClientAsync</span><span class="p">()</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">minimal_client</span><span class="o">.</span><span class="n">send_request</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+    <span class="n">minimal_client</span><span class="o">.</span><span class="n">destroy_node</span><span class="p">()</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="odometry">
+<h2>Odometry<a class="headerlink" href="#odometry" title="Permalink to this heading"></a></h2>
+<p>We use the odometry plugin to get the position and velocity of a link with respect to the stationary world frame.
+Once you add the plugin you will have two topics available <span class="guilabel">/odom</span> and <span class="guilabel">/velocity</span>.
+The <span class="guilabel">/odom</span> topic will have the pose and orientation of the link.
+The <span class="guilabel">/velocity</span> topic will have the linear and angular velocities of the link.</p>
+<p>This plugin is provided to us by <span class="guilabel">odometry</span> package so make sure you have the  package installed.</p>
+<p><strong>Package Installation Guide lines:</strong></p>
+<ol class="arabic simple">
+<li><p>Move to <span class="guilabel">~/workspace/src</span></p></li>
+<li><p>Run the below command to download the <span class="guilabel">odometry</span> package.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>svn<span class="w"> </span><span class="nb">export</span><span class="w"> </span>https://github.com/shantanuparabumd/ENPM-662-Introduction-to-Robot-Modelling.git/trunk/templates/plugin/odometry
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Build the workspace and source.</p></li>
+</ol>
+<p><strong>Plugin Usage Guideline:</strong></p>
+<p>Add the folowing line to <span class="guilabel">robot_name.urdf.xacro</span> file.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;gazebo&gt;</span>
+<span class="w">  </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;libodometry_plugin.so&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;odometry_plugin&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- Name of the link for which the odometry is required --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;frame&gt;</span>blade_link<span class="nt">&lt;/frame&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- Any arbitray name for the world frame --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;world_frame&gt;</span>fixed_world<span class="nt">&lt;/world_frame&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="nt">&lt;/gazebo&gt;</span>
+</pre></div>
+</div>
+<p>Build and Run the project and you should be able to see <span class="guilabel">/odom</span>  and :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>/velocity ` service in the topic list.</p>
+<p>Use the below command to get the service list</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>list
+</pre></div>
+</div>
+<p>Use the below command to echo the topic and also can write a subscriber to get the topic data</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/odom
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/velocity
+</pre></div>
+</div>
+</section>
+<section id="drone-plugin">
+<h2>Drone Plugin<a class="headerlink" href="#drone-plugin" title="Permalink to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>The plugin does not ensure a perfect flight and you will need to write a PID control loop.</p></li>
+<li><p>Tuning will be required for Thrust and Torque for links to move.</p></li>
+<li><p>These depend upon the weight of each link and the robot.</p></li>
+</ul>
+</div>
+<p>As many of you are trying to implement the drones in your project. Here is a plugin that will help you ease up things.
+Once you add the plugin you will have two topics available for subscription <span class="guilabel">/drone_pose</span> and <span class="guilabel">/drone_velocity</span>.
+And one topic for publishing the motor speeds <span class="guilabel">/motor_speed</span> The <span class="guilabel">/odom</span> topic will have the pose and orientation of the link.
+The <span class="guilabel">/velocity</span> topic will have the linear and angular velocities of the link.</p>
+<p>This plugin is provided to us by <span class="guilabel">drone_plugin</span> package so make sure you have the  package installed.</p>
+<p><strong>Package Installation Guide lines:</strong></p>
+<ol class="arabic simple">
+<li><p>Move to <span class="guilabel">~/workspace/src</span></p></li>
+<li><p>Run the below command to download the <span class="guilabel">drone_plugin</span> package.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>svn<span class="w"> </span><span class="nb">export</span><span class="w"> </span>https://github.com/shantanuparabumd/ENPM-662-Introduction-to-Robot-Modelling.git/trunk/templates/plugin/drone_plugin
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Build the workspace and source.</p></li>
+</ol>
+<p><strong>Plugin Usage Guideline:</strong></p>
+<p>Add the folowing line to <span class="guilabel">robot_name.urdf.xacro</span> file.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;gazebo&gt;</span>
+<span class="w">  </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;drone_plugin&quot;</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;libdrone.so&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- Name of the base/body link of the drone to compute odometry --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;drone_frame&gt;</span>base_link<span class="nt">&lt;/drone_frame&gt;</span>
+<span class="w">    </span><span class="nt">&lt;updateRate&gt;</span>100<span class="nt">&lt;/updateRate&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- Keep this true if you want to visualize transforms for RViz --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;publishTf&gt;</span>true<span class="nt">&lt;/publishTf&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- Adjust the coefficient according to need --&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;rotorThrustCoeff&gt;</span>0.00025<span class="nt">&lt;/rotorThrustCoeff&gt;</span>
+<span class="w">    </span><span class="nt">&lt;rotorTorqueCoeff&gt;</span>0.0000074<span class="nt">&lt;/rotorTorqueCoeff&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="nt">&lt;/gazebo&gt;</span>
+</pre></div>
+</div>
+<p>The <span class="guilabel">rotorThrustCoeff</span> and <span class="guilabel">rotorTorqueCoeff</span> are critical as they decide the amount of Thrust and Torque generated as follows:</p>
+<p>Thrust = rotorThrustCoeff * motor_speed</p>
+<p>Torque = rotorTorqueCoeff * motor_speed</p>
+<p>Build and Run the project and you should be able to see <span class="guilabel">/motor_speed</span> , <span class="guilabel">/drone_pose</span>  and <span class="guilabel">/drone_velocity</span> service in the topic list.</p>
+<p>Use the below command to get the topic list</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>list
+</pre></div>
+</div>
+<p>Use the below command to echo the topic and also can write a subscriber to get the topic data</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/drone_pose
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/drone_velocity
+</pre></div>
+</div>
+<p>Use the below command for publishing motor speeds.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/motor_speed<span class="w"> </span>drone_plugin/msg/MotorSpeed<span class="w">  </span><span class="s2">&quot;{name: [&#39;link1&#39;,&#39;link2&#39;,&#39;link3&#39;], velocity: [5000.0,5000.0,5000.0]}&quot;</span>
+</pre></div>
+</div>
+<p>You can change the number of links according to robot model.</p>
+<p>Here is a small script to publsih to motor speed topic.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">rclpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">drone_plugin.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">MotorSpeed</span>                            <span class="c1"># CHANGE</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MinimalPublisher</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;minimal_publisher&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">publisher_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_publisher</span><span class="p">(</span><span class="n">MotorSpeed</span><span class="p">,</span> <span class="s1">&#39;/motor_speed&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># CHANGE</span>
+        <span class="n">timer_period</span> <span class="o">=</span> <span class="mf">0.5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_timer</span><span class="p">(</span><span class="n">timer_period</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">timer_callback</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">timer_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">MotorSpeed</span><span class="p">()</span>                                                <span class="c1"># CHANGE</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;blade_link&#39;</span><span class="p">]</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">]</span>                                       <span class="c1"># CHANGE</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">publisher_</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Publishing:&#39;</span><span class="p">)</span>       <span class="c1"># CHANGE</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+
+    <span class="n">minimal_publisher</span> <span class="o">=</span> <span class="n">MinimalPublisher</span><span class="p">()</span>
+
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">minimal_publisher</span><span class="p">)</span>
+
+    <span class="n">minimal_publisher</span><span class="o">.</span><span class="n">destroy_node</span><span class="p">()</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rviz.html" class="btn btn-neutral float-left" title="RVIZ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="script.html" class="btn btn-neutral float-right" title="teleop Script" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Shantanu Parab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

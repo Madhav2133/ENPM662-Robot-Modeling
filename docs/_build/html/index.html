@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project 1 Documentation &mdash; ENPM 662: Introduction to Robot Modelling 1.0 documentation</title>
@@ -12,9 +12,10 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
@@ -22,7 +23,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Workspace Setup" href="workspace.html" /> 
+    <link rel="next" title="Install Ubuntu" href="install_ubuntu.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -30,15 +31,11 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="#" class="icon icon-home">
-            ENPM 662: Introduction to Robot Modelling
+            <a href="#" class="icon icon-home"> ENPM 662: Introduction to Robot Modelling
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -46,10 +43,19 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="install_ubuntu.html">Install Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_ros2.html">Install ROS2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidworks.html">Solidworks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="workspace.html">Workspace Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="package_creation.html">Create a Package in ROS 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="add_urdf.html">Add URDF to Package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="add_control.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rviz.html">RVIZ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin.html">Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="script.html">teleop Script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_objects.html">Custom Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world.html">Creating and Saving a world in Gazebo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Faced Errors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
 </ul>
 
@@ -66,7 +72,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li><a href="#" class="icon icon-home"></a></li>
       <li class="breadcrumb-item active">Project 1 Documentation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
@@ -82,6 +88,23 @@
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="install_ubuntu.html">Install Ubuntu</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install_ubuntu.html#dual-boot">Dual Boot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install_ubuntu.html#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install_ubuntu.html#virtual-box">Virtual Box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install_ubuntu.html#complete-boot">Complete Boot</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install_ros2.html">Install ROS2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install_ros2.html#installation-guide">Installation Guide:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install_ros2.html#tutorials">Tutorials:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solidworks.html">Solidworks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solidworks.html#project-1-details">Project 1 Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidworks.html#sw2urdf">SW2URDF</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="workspace.html">Workspace Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="package_creation.html">Create a Package in ROS 2</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="package_creation.html#create-package">Create Package</a></li>
@@ -90,6 +113,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="add_urdf.html">Add URDF to Package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="add_urdf.html#download-urdf">Download URDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_urdf.html#update-urdf-file">Update URDF file</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add_urdf.html#launch-files">Launch files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add_urdf.html#cmakelists">CMakeLists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add_urdf.html#package-xml">Package xml</a></li>
@@ -104,6 +128,25 @@
 <li class="toctree-l2"><a class="reference internal" href="add_control.html#start-the-controller">Start the Controller</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="rviz.html">RVIZ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin.html">Plugin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plugin.html#lidar">LIDAR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin.html#imu">IMU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin.html#vacuum-gripper">Vacuum Gripper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin.html#odometry">Odometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin.html#drone-plugin">Drone Plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="script.html">teleop Script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_objects.html">Custom Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world.html">Creating and Saving a world in Gazebo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Faced Errors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#xacro-package-is-not-installed">1. Xacro Package is Not Installed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#ros-controller-manager-not-found">2. ROS Controller Manager Not Found</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#transform-not-available">3. Transform Not Available</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#subscribing-to-imu-sensor-data">4. Subscribing to IMU Sensor data</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
 </ul>
 </div>
@@ -112,8 +155,8 @@ This will consist of the following steps.</p>
 <ul class="simple">
 <li><p>Creating a Robot Model in Solidworks</p></li>
 <li><p>Exporting Model to URDF</p></li>
-<li><p>Installing Ubuntu 20.04 (Focal Fossa)</p></li>
-<li><p>Installing ROS 2 Galactic</p></li>
+<li><p>Installing Ubuntu 22.04 (Jammy Jellyfish)</p></li>
+<li><p>Installing ROS 2 Humble</p></li>
 <li><p>Setting Up Environment</p></li>
 <li><p>Setting Up Workspace</p></li>
 <li><p>Creating a Package</p></li>
@@ -135,12 +178,12 @@ This will consist of the following steps.</p>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Ubuntu 20.04</dt><dd><p>This is our base operating system for stable builds of our package</p>
+<dt>Ubuntu 22.04</dt><dd><p>This is our base operating system for stable builds of our package</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>ROS2 Galactic</dt><dd><p>This is a stable version of ROS2 which works well for our project</p>
+<dt>ROS2 Humble</dt><dd><p>This is a stable version of ROS2 which works well for our project</p>
 </dd>
 </dl>
 </li>
@@ -157,7 +200,7 @@ This will consist of the following steps.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="workspace.html" class="btn btn-neutral float-right" title="Workspace Setup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="install_ubuntu.html" class="btn btn-neutral float-right" title="Install Ubuntu" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

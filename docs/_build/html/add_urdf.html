@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Add URDF to Package &mdash; ENPM 662: Introduction to Robot Modelling 1.0 documentation</title>
@@ -12,9 +12,10 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
@@ -31,15 +32,11 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="index.html" class="icon icon-home">
-            ENPM 662: Introduction to Robot Modelling
+            <a href="index.html" class="icon icon-home"> ENPM 662: Introduction to Robot Modelling
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -49,11 +46,12 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install_ubuntu.html">Install Ubuntu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_ros2.html">Install ROS2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="env_setup.html">Environment Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidworks.html">Solidworks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="workspace.html">Workspace Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="package_creation.html">Create a Package in ROS 2</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Add URDF to Package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#download-urdf">Download URDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#update-urdf-file">Update URDF file</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#launch-files">Launch files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cmakelists">CMakeLists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#package-xml">Package xml</a></li>
@@ -62,8 +60,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="add_control.html">Controllers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="script.html">Script</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rviz.html">RVIZ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin.html">Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="script.html">teleop Script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_objects.html">Custom Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world.html">Creating and Saving a world in Gazebo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Faced Errors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
 </ul>
 
@@ -80,7 +82,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
       <li class="breadcrumb-item active">Add URDF to Package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/add_urdf.rst.txt" rel="nofollow"> View page source</a>
@@ -95,13 +97,15 @@
 <h1>Add URDF to Package<a class="headerlink" href="#add-urdf-to-package" title="Permalink to this heading"></a></h1>
 <section id="download-urdf">
 <h2>Download URDF<a class="headerlink" href="#download-urdf" title="Permalink to this heading"></a></h2>
-<p>Once you have create a URDF using Solidworks you will get a package which is compatible with ROS1. However to make it work with ROS2 we will need to make some changes.</p>
-<p>Note:
-Make sure the name of the package from Solidworks Exporter is same as the package you created in ROS2. This will make it easy to deal with further changes.</p>
+<p>Once you have created a URDF using Solidworks you will get a package which is compatible with ROS1. However to make it work with ROS2 we will need to make some changes.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make sure the name of the package from Solidworks Exporter is same as the package you created in ROS2. This will make it easy to deal with further changes.</p>
+</div>
 <p>You will get a folder with a similar structure</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>├──<span class="w"> </span>CMakeLists.txt
 ├──<span class="w"> </span>config
-│<span class="w">   </span>└──<span class="w"> </span>joint_names_car.yaml
+│<span class="w">   </span>└──<span class="w"> </span>joint_names_test_package.yaml
 ├──<span class="w"> </span>export.log
 ├──<span class="w"> </span>launch
 │<span class="w">   </span>├──<span class="w"> </span>display.launch
@@ -128,15 +132,15 @@ Make sure the name of the package from Solidworks Exporter is same as the packag
 ├──<span class="w"> </span>package.xml
 ├──<span class="w"> </span>textures
 └──<span class="w"> </span>urdf
-<span class="w">    </span>├──<span class="w"> </span>car.csv
-<span class="w">    </span>└──<span class="w"> </span>car.urdf
+<span class="w">    </span>├──<span class="w"> </span>test_package.csv
+<span class="w">    </span>└──<span class="w"> </span>test_package.urdf
 </pre></div>
 </div>
 <p>Now you need to move the folders meshes and urdf to your ROS2 package.
 After performing the above step your ROS2 package should look like follows.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>├──<span class="w"> </span>CMakeLists.txt
 ├──<span class="w"> </span>include
-│<span class="w">   </span>└──<span class="w"> </span>car
+│<span class="w">   </span>└──<span class="w"> </span>test_package
 ├──<span class="w"> </span>meshes
 │<span class="w">   </span>├──<span class="w"> </span>back_left_axel.STL
 │<span class="w">   </span>├──<span class="w"> </span>back_left_lidar.STL
@@ -159,8 +163,8 @@ After performing the above step your ROS2 package should look like follows.</p>
 ├──<span class="w"> </span>package.xml
 ├──<span class="w"> </span>src
 └──<span class="w"> </span>urdf
-<span class="w">    </span>├──<span class="w"> </span>car.csv
-<span class="w">    </span>└──<span class="w"> </span>car.urdf
+<span class="w">    </span>├──<span class="w"> </span>test_package.csv
+<span class="w">    </span>└──<span class="w"> </span>test_package.urdf
 </pre></div>
 </div>
 <p>To make sure these folders are visible to your build package you also need to change the CMakeLists as follows.</p>
@@ -173,14 +177,25 @@ After performing the above step your ROS2 package should look like follows.</p>
 </div>
 <p>We will be adding more directories later to make our robot spawn and add controllers.</p>
 </section>
-<section id="launch-files">
-<h2>Launch files<a class="headerlink" href="#launch-files" title="Permalink to this heading"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/test_ws/src/package-name/
-
-<span class="c1"># Example</span>
-<span class="nb">cd</span><span class="w"> </span>~/test_ws/src/car/
+<section id="update-urdf-file">
+<h2>Update URDF file<a class="headerlink" href="#update-urdf-file" title="Permalink to this heading"></a></h2>
+<p>The name of your URDF file at this point will be <span class="guilabel">robot_name.urdf</span>. Rename it to <span class="guilabel">robot_name.urdf.xacro</span>
+The xacro extension will help us to use xacro formating in our model.</p>
+<p>Now open your <span class="guilabel">robot_name.urdf.xacro</span> and remove the <span class="guilabel">encoding=”utf-8”</span> part from the xml tag.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
 </pre></div>
 </div>
+<p>Your tag should look like below after update</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; ?&gt;</span>
+</pre></div>
+</div>
+<p>You will also need to add the <span class="guilabel">xmlns:xacro=”http://ros.org/wiki/xacro”</span> argument to your robot tag.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;robot</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_name&quot;</span><span class="w"> </span><span class="na">xmlns:xacro=</span><span class="s">&quot;http://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="launch-files">
+<h2>Launch files<a class="headerlink" href="#launch-files" title="Permalink to this heading"></a></h2>
 <p>Inorder to launch our robot model we need launch files that activate the following things.</p>
 <ul class="simple">
 <li><p>Gazebo Server</p></li>
@@ -189,6 +204,13 @@ After performing the above step your ROS2 package should look like follows.</p>
 <li><p>Start the State Publisher</p></li>
 </ul>
 <p>We will be downloading a few templates for ease.</p>
+<p>We move to the root of our package and then run the code below to download the templates.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/test_ws/src/package-name/
+
+<span class="c1"># Example</span>
+<span class="nb">cd</span><span class="w"> </span>~/test_ws/src/test_package/
+</pre></div>
+</div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>svn<span class="w"> </span><span class="nb">export</span><span class="w"> </span>https://github.com/shantanuparabumd/ENPM-662-Introduction-to-Robot-Modelling.git/trunk/templates/launch
 </pre></div>
 </div>
@@ -199,10 +221,10 @@ After performing the above step your ROS2 package should look like follows.</p>
 <p>Your current package structure should look like follows.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>├──<span class="w"> </span>CMakeLists.txt
 ├──<span class="w"> </span>include
-│<span class="w">   </span>└──<span class="w"> </span>car
+│<span class="w">   </span>└──<span class="w"> </span>test_package
 ├──<span class="w"> </span>launch
 │<span class="w">   </span>├──<span class="w"> </span>robot_description_publisher.py
-│<span class="w">   </span>├──<span class="w"> </span>robot.launch.py
+│<span class="w">   </span>├──<span class="w"> </span>gazebo.launch.py
 │<span class="w">   </span>└──<span class="w"> </span>spawn_robot_ros2.launch.py
 ├──<span class="w"> </span>meshes
 │<span class="w">   </span>├──<span class="w"> </span>back_left_axel.STL
@@ -226,8 +248,8 @@ After performing the above step your ROS2 package should look like follows.</p>
 ├──<span class="w"> </span>package.xml
 ├──<span class="w"> </span>src
 ├──<span class="w"> </span>urdf
-│<span class="w">   </span>├──<span class="w"> </span>car.csv
-│<span class="w">   </span>└──<span class="w"> </span>car.urdf
+│<span class="w">   </span>├──<span class="w"> </span>test_package.csv
+│<span class="w">   </span>└──<span class="w"> </span>test_package.urdf
 └──<span class="w"> </span>worlds
 <span class="w">    </span>└──<span class="w"> </span>empty_world.world
 </pre></div>
@@ -235,14 +257,13 @@ After performing the above step your ROS2 package should look like follows.</p>
 </section>
 <section id="cmakelists">
 <h2>CMakeLists<a class="headerlink" href="#cmakelists" title="Permalink to this heading"></a></h2>
-<p>We have to make a few cahnages to the CMakeLists</p>
-<p>Do not forget the add these folders to CMakeLists</p>
+<p>We have to make a few changes to the CMakeLists</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">install</span><span class="p">(</span><span class="s">DIRECTORY</span>
 <span class="w">    </span><span class="s">urdf</span>
 <span class="w">    </span><span class="s">meshes</span>
-<span class="w">    </span><span class="s">launch</span>
-<span class="w">    </span><span class="s">worlds</span>
-<span class="w">    </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">share/</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">/</span>
+<span class="hll"><span class="w">    </span><span class="s">launch</span>
+</span><span class="hll"><span class="w">    </span><span class="s">worlds</span>
+</span><span class="w">    </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">share/</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">/</span>
 <span class="w">    </span><span class="p">)</span>
 </pre></div>
 </div>
@@ -250,7 +271,7 @@ After performing the above step your ROS2 package should look like follows.</p>
 <li><p>Add include DIRECTORY</p>
 <blockquote>
 <div><div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">install</span><span class="p">(</span>
-<span class="w">    </span><span class="s">DIRECTORY</span><span class="w"> </span><span class="s">include/car</span>
+<span class="w">    </span><span class="s">DIRECTORY</span><span class="w"> </span><span class="s">include/test_package</span>
 <span class="w">    </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">include</span>
 <span class="w">    </span><span class="p">)</span>
 </pre></div>
@@ -285,15 +306,15 @@ After performing the above step your ROS2 package should look like follows.</p>
 <p>A few more changes have to be made to package.xml file</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;buildtool_depend&gt;</span>ament_cmake<span class="nt">&lt;/buildtool_depend&gt;</span>
 
-<span class="nt">&lt;build_depend&gt;</span>rosidl_default_generators<span class="nt">&lt;/build_depend&gt;</span>
-
-<span class="nt">&lt;build_depend&gt;</span>xacro<span class="nt">&lt;/build_depend&gt;</span>
-
-<span class="nt">&lt;depend&gt;</span>gazebo_ros_pkgs<span class="nt">&lt;/depend&gt;</span>
-<span class="nt">&lt;depend&gt;</span>robot_state_publisher<span class="nt">&lt;/depend&gt;</span>
-<span class="nt">&lt;depend&gt;</span>tf2<span class="nt">&lt;/depend&gt;</span>
-<span class="nt">&lt;depend&gt;</span>tf2_ros<span class="nt">&lt;/depend&gt;</span>
-
+<span class="hll"><span class="nt">&lt;build_depend&gt;</span>rosidl_default_generators<span class="nt">&lt;/build_depend&gt;</span>
+</span><span class="hll">
+</span><span class="hll"><span class="nt">&lt;build_depend&gt;</span>xacro<span class="nt">&lt;/build_depend&gt;</span>
+</span><span class="hll">
+</span><span class="hll"><span class="nt">&lt;depend&gt;</span>gazebo_ros_pkgs<span class="nt">&lt;/depend&gt;</span>
+</span><span class="hll"><span class="nt">&lt;depend&gt;</span>robot_state_publisher<span class="nt">&lt;/depend&gt;</span>
+</span><span class="hll"><span class="nt">&lt;depend&gt;</span>tf2<span class="nt">&lt;/depend&gt;</span>
+</span><span class="hll"><span class="nt">&lt;depend&gt;</span>tf2_ros<span class="nt">&lt;/depend&gt;</span>
+</span>
 
 <span class="nt">&lt;test_depend&gt;</span>ament_lint_auto<span class="nt">&lt;/test_depend&gt;</span>
 <span class="nt">&lt;test_depend&gt;</span>ament_lint_common<span class="nt">&lt;/test_depend&gt;</span>
@@ -301,8 +322,8 @@ After performing the above step your ROS2 package should look like follows.</p>
 
 <span class="nt">&lt;export&gt;</span>
 <span class="w">    </span><span class="nt">&lt;build_type&gt;</span>ament_cmake<span class="nt">&lt;/build_type&gt;</span>
-<span class="w">    </span><span class="nt">&lt;gazebo_ros</span><span class="w"> </span><span class="na">gazebo_model_path=</span><span class="s">&quot;${prefix}/..&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/export&gt;</span>
+<span class="hll"><span class="w">    </span><span class="nt">&lt;gazebo_ros</span><span class="w"> </span><span class="na">gazebo_model_path=</span><span class="s">&quot;${prefix}/..&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span class="nt">&lt;/export&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -312,8 +333,8 @@ After performing the above step your ROS2 package should look like follows.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;xacro:macro</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;body_color&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;visual&gt;</span>
 <span class="w">    </span><span class="nt">&lt;material&gt;</span>
-<span class="w">        </span><span class="nt">&lt;ambient&gt;</span>0.250980392156863<span class="w"> </span>0.250980392156863<span class="w"> </span>0.250980392156863<span class="w"> </span>1<span class="nt">&lt;/ambient&gt;</span>
-<span class="w">        </span><span class="nt">&lt;diffuse&gt;</span>0.250980392156863<span class="w"> </span>0.250980392156863<span class="w"> </span>0.250980392156863<span class="w"> </span>1<span class="nt">&lt;/diffuse&gt;</span>
+<span class="w">        </span><span class="nt">&lt;ambient&gt;</span>0.8<span class="w"> </span>0.558823529411765<span class="w"> </span>0.1<span class="w"> </span>1<span class="nt">&lt;/ambient&gt;</span>
+<span class="w">        </span><span class="nt">&lt;diffuse&gt;</span>0.8<span class="w"> </span>0.558823529411765<span class="w"> </span>0.1<span class="w"> </span>1<span class="nt">&lt;/diffuse&gt;</span>
 <span class="w">        </span><span class="nt">&lt;specular&gt;</span>0.1<span class="w"> </span>0.1<span class="w"> </span>0.1<span class="w"> </span>1<span class="nt">&lt;/specular&gt;</span>
 <span class="w">        </span><span class="nt">&lt;emissive&gt;</span>0<span class="w"> </span>0<span class="w"> </span>0<span class="w"> </span>0<span class="nt">&lt;/emissive&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/material&gt;</span>
@@ -330,37 +351,37 @@ After performing the above step your ROS2 package should look like follows.</p>
 <section id="launch-model">
 <h2>Launch Model<a class="headerlink" href="#launch-model" title="Permalink to this heading"></a></h2>
 <p>Now we need to edit the launch files to fit to our package. Find the following lines and change it to your package name</p>
-<p>File Name: <cite>robot.launch.py</cite></p>
+<p>File Name: <cite>gazebo.launch.py</cite></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="n">world</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-    <span class="n">get_package_share_directory</span><span class="p">(</span><span class="s1">&#39;car&#39;</span><span class="p">),</span>
+    <span class="n">get_package_share_directory</span><span class="p">(</span><span class="s1">&#39;test_package&#39;</span><span class="p">),</span>
     <span class="s1">&#39;worlds&#39;</span><span class="p">,</span>
     <span class="s1">&#39;empty_world.world&#39;</span>
 <span class="p">)</span>
 
-<span class="n">package_path</span> <span class="o">=</span> <span class="n">get_package_share_directory</span><span class="p">(</span><span class="s1">&#39;car&#39;</span><span class="p">)</span>
+<span class="n">package_path</span> <span class="o">=</span> <span class="n">get_package_share_directory</span><span class="p">(</span><span class="s1">&#39;test_package&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>File Name: <cite>spawn_robot_ros2.launch.py</cite></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">####### DATA INPUT ##########</span>
-<span class="n">xacro_file</span> <span class="o">=</span> <span class="s2">&quot;car.urdf.xacro&quot;</span>
+<span class="n">xacro_file</span> <span class="o">=</span> <span class="s2">&quot;test_package.urdf.xacro&quot;</span>
 <span class="c1">#xacro_file = &quot;box_bot.xacro&quot;</span>
-<span class="n">package_description</span> <span class="o">=</span> <span class="s2">&quot;car&quot;</span>
+<span class="n">package_description</span> <span class="o">=</span> <span class="s2">&quot;test_package&quot;</span>
 <span class="c1"># Position and orientation</span>
 <span class="c1"># [X, Y, Z]</span>
 <span class="n">position</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
 <span class="c1"># [Roll, Pitch, Yaw]</span>
 <span class="n">orientation</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
 <span class="c1"># Base Name or robot</span>
-<span class="n">robot_base_name</span> <span class="o">=</span> <span class="s2">&quot;car&quot;</span>
+<span class="n">robot_base_name</span> <span class="o">=</span> <span class="s2">&quot;test_package&quot;</span>
 <span class="c1"># Package Name</span>
-<span class="n">pkg_name</span><span class="o">=</span><span class="s1">&#39;car&#39;</span>
+<span class="n">pkg_name</span><span class="o">=</span><span class="s1">&#39;test_package&#39;</span>
 <span class="c1">####### DATA INPUT END ##########</span>
 </pre></div>
 </div>
 <p>Once All the changes are done.
 Build Your Package and Source Overlay</p>
 <p>Launch your robot using</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>car<span class="w"> </span>robot.launch.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>test_package<span class="w"> </span>gazebo.launch.py
 </pre></div>
 </div>
 </section>

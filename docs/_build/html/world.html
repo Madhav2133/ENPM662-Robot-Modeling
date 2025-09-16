@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creating and Saving a world in Gazebo &mdash; ENPM 662: Introduction to Robot Modelling 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Frequently Faced Errors" href="faq.html" />
+    <link rel="prev" title="Custom Object" href="custom_objects.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> ENPM 662: Introduction to Robot Modelling
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install_ubuntu.html">Install Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_ros2.html">Install ROS2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidworks.html">Solidworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workspace.html">Workspace Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_creation.html">Create a Package in ROS 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_urdf.html">Add URDF to Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_control.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rviz.html">RVIZ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin.html">Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="script.html">teleop Script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_objects.html">Custom Object</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Creating and Saving a world in Gazebo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Faced Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ENPM 662: Introduction to Robot Modelling</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Creating and Saving a world in Gazebo</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/world.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="creating-and-saving-a-world-in-gazebo">
+<h1>Creating and Saving a world in Gazebo<a class="headerlink" href="#creating-and-saving-a-world-in-gazebo" title="Permalink to this heading"></a></h1>
+<p>Use the below tutorial to understand how to create a world using gazebo</p>
+<p><a class="reference external" href="https://classic.gazebosim.org/tutorials?tut=build_world&amp;ver=1.9#LoadingaWorld">Gazebo Tutorial</a></p>
+<p>Your world will be saved in a <span class="guilabel">SDF`</span> format like <span class="guilabel">test_world.sdf</span>. You can rename the world file to
+<span class="guilabel">test_world.world</span>.</p>
+<p>Add this file to the <span class="guilabel">wordls`</span> folder in your project package.</p>
+<p>Make sure the worlds folder is added to <span class="guilabel">CMakeLists.txt`</span></p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">install</span><span class="p">(</span><span class="s">DIRECTORY</span>
+<span class="w">    </span><span class="s">urdf</span>
+<span class="w">    </span><span class="s">meshes</span>
+<span class="w">    </span><span class="s">launch</span>
+<span class="hll"><span class="w">    </span><span class="s">worlds</span>
+</span><span class="w">    </span><span class="s">config</span>
+<span class="w">    </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">share/</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">/</span>
+<span class="w">    </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now for your robot to spawn in the new world edit the <span class="guilabel">gazebo.launch.py`</span> file.
+Change the line in below code with name of your world file.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the location for empty world</span>
+<span class="n">world</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="n">get_package_share_directory</span><span class="p">(</span><span class="s1">&#39;quadruped_robot&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;worlds&#39;</span><span class="p">,</span>
+<span class="hll">    <span class="s1">&#39;test_world.world&#39;</span>
+</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Build and run your project and the robot will spawn in new environment.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="custom_objects.html" class="btn btn-neutral float-left" title="Custom Object" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="faq.html" class="btn btn-neutral float-right" title="Frequently Faced Errors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Shantanu Parab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
